@@ -62,6 +62,9 @@ do
     unset -v K_Coordinate[$i]
     break
   fi
+  if [ "${K_Label[$i]}" == "GAMMA" ];then
+    K_Label[$i]="Γ"
+  fi
 done
 K_path_print=""
 for ((i=1;i<=${#K_Label[*]};i++))
@@ -147,9 +150,9 @@ EOF
   for ((i=1;i<=${#K_Label[*]};i++))
   do
     if ((i==${#K_Label[*]}));then
-      echo "'< echo \"${K_Coordinate[$i]} ${y_min} \\n ${K_Coordinate[$i]} ${y_max}\"' w l dt 2 lc rgb \"gray\"">> ${output}
+      echo "'< echo -e \"${K_Coordinate[$i]} ${y_min}\\n${K_Coordinate[$i]} ${y_max}\"' w l dt 2 lc rgb \"gray\"">> ${output}
     else
-      echo "'< echo \"${K_Coordinate[$i]} ${y_min} \\n ${K_Coordinate[$i]} ${y_max}\"' w l dt 2 lc rgb \"gray\", \\">> ${output}
+      echo "'< echo -e \"${K_Coordinate[$i]} ${y_min}\\n${K_Coordinate[$i]} ${y_max}\"' w l dt 2 lc rgb \"gray\", \\">> ${output}
     fi
   done
 done
