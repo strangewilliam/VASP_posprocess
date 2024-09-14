@@ -1,12 +1,14 @@
 POTCAR 生成脚本
 
 ```shell
-#!/bin/bash
-# This is potmake script.
+# !/bin/bash
+# potmake.sh
 
-hom="/fs12/home/zhj_xujq"
-file_name=`find -name  POTCAR*`
-if [ "${#file_name[*]}" != "0" ];
+# Please provide the path to the POTCAR files here.
+hom="/PATH/TO/POTCAR/FILES"
+
+file_name=`find . -maxdepth 1 -name POTCAR*`
+if [ "${#file_name[*]}" -gt 1 ];
 then
   rm POTCAR*
 fi
@@ -28,10 +30,12 @@ do
     judge="1"
   else
     echo "Wrong input!"
-  
   fi
 done
-hom="${hom}/POTCAR/${method}.54/"
+
+# Please provide the path to the POTCAR files here.
+hom="${hom}/${method}.54/"
+
 for ele in ${elements}
 do
 # judge whether the POTCAR needed exist first
@@ -92,6 +96,7 @@ else
   echo "ENMAX among elements " ${elements} " is " ${m}
   echo "Successfully finished!"
 fi
+
 exit 0
 ```
 
